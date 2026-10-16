@@ -1,4 +1,6 @@
+import base64
 import os
+import subprocess
 import sys
 import tempfile
 import webview
@@ -38,6 +40,102 @@ class Api:
             return files_data
         except Exception as e:
             raise RuntimeError('Tidak dapat membuka dialog pemilihan file.') from e
+
+    def select_single_pdf(self):
+        """Membuka dialog untuk memilih 1 file PDF untuk diedit"""
+        try:
+            file_types = ('PDF Files (*.pdf)',)
+            result = self._window.create_file_dialog(
+                webview.FileDialog.OPEN,
+                allow_multiple=False,
+                file_types=file_types
+            )
+            if not result:
+                return None
+            target = result[0] if isinstance(result, (list, tuple)) else result
+            path_obj = Path(target)
+            return {
+                'path': str(path_obj.absolute()),
+                'name': path_obj.name,
+            }
+        except Exception as e:
+            raise RuntimeError('Tidak dapat membuka dialog pemilihan file.') from e
+
+    def read_pdf_base64(self, file_path):
+        """Membaca file PDF lokal dan mengembalikan base64 string"""
+        if not isinstance(file_path, str) or not file_path or '\x00' in file_path:
+            raise ValueError('Path file tidak valid.')
+        path_obj = Path(file_path)
+        if not path_obj.is_absolute() or path_obj.suffix.lower() != '.pdf':
+            raise ValueError('Pilih file PDF dengan path absolut.')
+        if not path_obj.is_file():
+            raise FileNotFoundError(file_path)
+
+        data = path_obj.read_bytes()
+        return {
+            'success': True,
+            'name': path_obj.name,
+            'path': str(path_obj.absolute()),
+            'data': base64.b64encode(data).decode('utf-8'),
+            'size': len(data),
+        }
+
+    def save_pdf_base64(self, file_path, base64_data, custom_name=None):
+        """Menyimpan data PDF yang telah diedit ke file lokal baru"""
+        if not isinstance(file_path, str) or not file_path or '\x00' in file_path:
+            raise ValueError('Path file tidak valid.')
+        if not isinstance(base64_data, str) or not base64_data:
+            raise ValueError('Data PDF tidak valid.')
+        path_obj = Path(file_path)
+        if not path_obj.is_absolute() or path_obj.suffix.lower() != '.pdf':
+            raise ValueError('Path file harus berformat PDF dan absolut.')
+
+        raw_bytes = base64.b64decode(base64_data)
+        parent_dir = path_obj.parent
+        if not parent_dir.exists():
+            raise FileNotFoundError(f'Folder tujuan tidak ditemukan: {parent_dir}')
+
+        with tempfile.TemporaryDirectory(prefix='.pdf-unlocker-edit-', dir=parent_dir) as staging:
+            temporary_path = Path(staging) / 'edited.pdf'
+            with temporary_path.open('xb') as output:
+                os.chmod(temporary_path, 0o600)
+                output.write(raw_bytes)
+                output.flush()
+                os.fsync(output.fileno())
+
+            index = 0
+            while True:
+                suffix = f'_{index}' if index else ''
+                output_path = parent_dir / f'{path_obj.stem}_edited{suffix}.pdf'
+                try:
+                    os.link(temporary_path, output_path)
+                    break
+                except FileExistsError:
+                    index += 1
+
+        return {
+            'success': True,
+            'outputPath': str(output_path),
+            'name': output_path.name
+        }
+
+    def reveal_in_folder(self, file_path):
+        """Membuka folder lokasi file di file manager OS (Finder / Explorer)"""
+        if not isinstance(file_path, str) or not file_path or '\x00' in file_path:
+            return False
+        path_obj = Path(file_path)
+        if not path_obj.exists():
+            return False
+        try:
+            if sys.platform == 'darwin':
+                subprocess.run(['open', '-R', str(path_obj.absolute())], check=False)
+            elif sys.platform == 'win32':
+                subprocess.run(['explorer', '/select,', str(path_obj.absolute())], check=False)
+            else:
+                subprocess.run(['xdg-open', str(path_obj.parent.absolute())], check=False)
+            return True
+        except Exception:
+            return False
 
     def unlock_files(self, files_payload, global_password):
         """

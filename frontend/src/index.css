@@ -1004,3 +1004,1026 @@ button:disabled { cursor: not-allowed; }
 .spin {
   animation: spin 1s linear infinite;
 }
+
+/* ============================================================
+   MODE TABS (UNLOCKER vs EDITOR)
+   ============================================================ */
+.cc-mode-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  background: rgba(10, 13, 28, 0.6);
+  padding: 0.3rem;
+  border-radius: 8px;
+  border: 1px solid var(--cc-border);
+  width: fit-content;
+}
+
+.cc-tab-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--cc-text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cc-tab-pill:hover {
+  color: var(--cc-text-main);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cc-tab-pill.active {
+  background: var(--cc-navy-700);
+  color: var(--cc-yellow-500);
+  border-color: rgba(255, 211, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cc-tab-badge {
+  background: var(--cc-lime-400);
+  color: #070A17;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Quick Edit Button in Unlocker File Rows */
+.output-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.edit-file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  color: var(--cc-yellow-500);
+  border-color: rgba(255, 211, 0, 0.35);
+  background: rgba(255, 211, 0, 0.08);
+}
+
+.edit-file-btn:hover {
+  background: rgba(255, 211, 0, 0.18);
+  border-color: var(--cc-yellow-500);
+}
+
+/* Edit Mode Launcher Card */
+.editor-launcher-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0.5rem 0;
+}
+
+.launcher-features-banner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.65rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(26, 35, 70, 0.45);
+  border: 1px solid var(--cc-border);
+  padding: 0.6rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--cc-text-secondary);
+  font-weight: 500;
+}
+
+.feature-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.yellow-dot { background: #FFD300; box-shadow: 0 0 6px rgba(255, 211, 0, 0.6); }
+.lime-dot { background: #AEE938; box-shadow: 0 0 6px rgba(174, 233, 56, 0.6); }
+.sky-dot { background: #38BDF8; box-shadow: 0 0 6px rgba(56, 189, 248, 0.6); }
+.rose-dot { background: #F472B6; box-shadow: 0 0 6px rgba(244, 114, 182, 0.6); }
+
+.editor-select-drop {
+  margin-top: 0.25rem;
+}
+
+.unlocked-quick-list {
+  background: rgba(10, 13, 28, 0.5);
+  border: 1px solid var(--cc-border);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+}
+
+.unlocked-quick-list h4 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--cc-text-muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.6rem;
+}
+
+.quick-file-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.quick-file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.75rem;
+  color: var(--cc-text-main);
+  background: var(--cc-navy-700);
+}
+
+.quick-file-name {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   FULL SCREEN OFFLINE PDF EDITOR
+   ============================================================ */
+.pdf-editor-root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #070A17;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Editor Toolbar */
+.pdf-editor-toolbar {
+  height: 56px;
+  min-height: 56px;
+  background: rgba(16, 22, 47, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--cc-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  z-index: 100;
+  gap: 0.75rem;
+}
+
+.pdf-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 200px;
+}
+
+.pdf-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  padding: 0.4rem 0.75rem;
+}
+
+.pdf-file-badge {
+  display: flex;
+  flex-direction: column;
+  max-width: 220px;
+}
+
+.pdf-badge-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cc-text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pdf-badge-offline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.68rem;
+  color: var(--cc-lime-400);
+  font-weight: 500;
+}
+
+/* Tools Floating Dock */
+.pdf-tools-dock {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(10, 13, 28, 0.85);
+  border: 1px solid var(--cc-border);
+  border-radius: 10px;
+  padding: 0.25rem 0.45rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.pdf-tool-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--cc-text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pdf-tool-btn:hover:not(:disabled) {
+  color: var(--cc-text-main);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pdf-tool-btn.active {
+  background: var(--cc-navy-700);
+  color: var(--cc-yellow-500);
+  border-color: rgba(255, 211, 0, 0.35);
+  box-shadow: 0 0 10px rgba(255, 211, 0, 0.2);
+}
+
+.pdf-tool-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.tool-tip {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 200;
+}
+
+.pdf-tool-btn:hover .tool-tip {
+  opacity: 1;
+}
+
+.pdf-tool-divider {
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0 0.25rem;
+}
+
+.pdf-color-swatches {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0 0.2rem;
+}
+
+.color-swatch-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.color-swatch-btn:hover {
+  transform: scale(1.15);
+}
+
+.color-swatch-btn.selected {
+  border-color: #FFFFFF;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+  transform: scale(1.1);
+}
+
+.pdf-size-selectors {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0 0.2rem;
+}
+
+.pdf-size-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--cc-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pdf-size-btn:hover {
+  color: var(--cc-text-main);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pdf-size-btn.selected {
+  background: var(--cc-navy-700);
+  border-color: var(--cc-yellow-500);
+  color: var(--cc-yellow-500);
+}
+
+/* Toolbar Right */
+.pdf-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.pdf-page-nav-pill {
+  display: flex;
+  align-items: center;
+  background: rgba(10, 13, 28, 0.6);
+  border: 1px solid var(--cc-border);
+  border-radius: 6px;
+  padding: 0.15rem;
+}
+
+.page-nav-text {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--cc-text-secondary);
+  padding: 0 0.5rem;
+  white-space: nowrap;
+}
+
+.pdf-zoom-control {
+  display: flex;
+  align-items: center;
+  background: rgba(10, 13, 28, 0.6);
+  border: 1px solid var(--cc-border);
+  border-radius: 6px;
+  padding: 0.15rem;
+}
+
+.zoom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: transparent;
+  border: none;
+  color: var(--cc-text-muted);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.zoom-btn:hover {
+  color: var(--cc-text-main);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.zoom-text {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--cc-text-secondary);
+  padding: 0 0.4rem;
+  min-width: 44px;
+  text-align: center;
+}
+
+.sidebar-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  padding: 0.4rem 0.7rem;
+}
+
+.sidebar-toggle-btn.active {
+  border-color: var(--cc-yellow-500);
+  color: var(--cc-yellow-500);
+}
+
+.comment-count-badge {
+  background: var(--cc-yellow-500);
+  color: #000;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.05rem 0.4rem;
+  line-height: 1.2;
+}
+
+.save-pdf-btn {
+  font-size: 0.8rem;
+  padding: 0.45rem 0.95rem;
+  gap: 0.4rem;
+}
+
+/* Workspace Layout */
+.pdf-editor-workspace {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Document Viewport */
+.pdf-viewport {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  background-color: #0A0D1C;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 4rem 1rem;
+  position: relative;
+}
+
+.pdf-loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 350px;
+  color: var(--cc-text-muted);
+}
+
+.pdf-error-banner {
+  background: rgba(233, 28, 17, 0.15);
+  border: 1px solid var(--cc-red-500);
+  color: #FFA4A0;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 600px;
+  width: 100%;
+}
+
+.pdf-pages-scroll-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.pdf-page-card {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 3px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+  contain-intrinsic-size: auto 600px auto 800px;
+  content-visibility: auto;
+}
+
+.pdf-page-header-tag {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--cc-text-muted);
+}
+
+.pdf-canvas-container {
+  position: relative;
+  display: block;
+}
+
+.pdf-canvas-container.tool-mode-select { cursor: default; }
+.pdf-canvas-container.tool-mode-highlight { cursor: crosshair; }
+.pdf-canvas-container.tool-mode-note { cursor: cell; }
+.pdf-canvas-container.tool-mode-text { cursor: text; }
+.pdf-canvas-container.tool-mode-draw { cursor: crosshair; }
+
+.pdf-canvas-container canvas {
+  display: block;
+}
+
+/* PDF.js Text Layer */
+.textLayer {
+  position: absolute;
+  text-align: initial;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  opacity: 1;
+  line-height: 1;
+  transform-origin: 0 0;
+  z-index: 2;
+  user-select: text;
+}
+
+.textLayer span {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+
+.textLayer ::selection {
+  background: rgba(56, 189, 248, 0.4) !important;
+  color: transparent !important;
+}
+
+/* SVG Annotation Overlay */
+.pdf-annotation-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.annot-svg-highlight {
+  pointer-events: auto;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.annot-svg-highlight:hover,
+.annot-svg-highlight.selected {
+  stroke: #FFD300;
+  stroke-width: 1.5;
+}
+
+.annot-svg-draw {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.annot-svg-draw.selected {
+  filter: drop-shadow(0 0 4px #FFD300);
+}
+
+.annot-svg-text {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.annot-svg-text.selected {
+  text-decoration: underline;
+}
+
+.annot-svg-pin {
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.annot-svg-pin:hover {
+  transform: scale(1.2);
+}
+
+.annot-svg-pin.selected circle {
+  stroke: #FFFFFF;
+  stroke-width: 2.5;
+}
+
+/* Floating Contextual Pill on Selection (Adobe Style) */
+.pdf-floating-selection-pill {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  background: rgba(16, 22, 47, 0.96);
+  border: 1px solid var(--cc-border-hover);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  padding: 0.35rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 200;
+  animation: popIn 0.15s ease-out;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translate(-50%, -90%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -100%) scale(1); }
+}
+
+.floating-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--cc-text-main);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.floating-action-btn:hover {
+  background: rgba(255, 211, 0, 0.15);
+  color: var(--cc-yellow-500);
+}
+
+.floating-divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.floating-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--cc-text-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 4px;
+}
+
+.floating-close-btn:hover {
+  color: var(--cc-text-main);
+}
+
+/* Inline Text Input on Canvas */
+.canvas-inline-text-wrapper {
+  position: absolute;
+  z-index: 50;
+  transform: translateY(-50%);
+}
+
+.canvas-inline-input {
+  background: rgba(16, 22, 47, 0.85);
+  border: 1.5px dashed var(--cc-yellow-500);
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Sticky Note Popover Card */
+.canvas-note-popover {
+  position: absolute;
+  z-index: 60;
+  width: 250px;
+  background: rgba(16, 22, 47, 0.98);
+  border: 1px solid var(--cc-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.note-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note-popover-author {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cc-yellow-500);
+}
+
+.note-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--cc-text-muted);
+  cursor: pointer;
+}
+
+.note-popover-textarea {
+  width: 100%;
+  background: rgba(10, 13, 28, 0.8);
+  border: 1px solid var(--cc-border);
+  border-radius: 6px;
+  color: var(--cc-text-main);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  resize: vertical;
+  outline: none;
+}
+
+.note-popover-textarea:focus {
+  border-color: var(--cc-yellow-500);
+}
+
+.note-popover-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+
+.note-del-btn {
+  font-size: 0.72rem;
+  padding: 0.25rem 0.5rem;
+  color: var(--cc-red-400);
+}
+
+.note-save-btn {
+  font-size: 0.72rem;
+  padding: 0.25rem 0.65rem;
+}
+
+/* Comments & Annotations Sidebar Drawer */
+.pdf-sidebar-drawer {
+  width: 320px;
+  min-width: 320px;
+  background: rgba(16, 22, 47, 0.98);
+  border-left: 1px solid var(--cc-border);
+  display: flex;
+  flex-direction: column;
+  z-index: 80;
+  overflow: hidden;
+}
+
+.sidebar-drawer-header {
+  height: 52px;
+  min-height: 52px;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--cc-border);
+}
+
+.sidebar-header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-header-title h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cc-text-main);
+}
+
+.sidebar-count {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--cc-text-secondary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.sidebar-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--cc-text-muted);
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 4px;
+}
+
+.sidebar-close-btn:hover {
+  color: var(--cc-text-main);
+}
+
+.sidebar-drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.sidebar-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--cc-text-muted);
+}
+
+.empty-icon {
+  margin-bottom: 0.75rem;
+  opacity: 0.4;
+}
+
+.empty-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cc-text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.empty-desc {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.sidebar-notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sidebar-note-card {
+  background: var(--cc-navy-700);
+  border: 1px solid var(--cc-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.sidebar-note-card:hover {
+  border-color: var(--cc-border-hover);
+  background: var(--cc-navy-600);
+}
+
+.sidebar-note-card.active {
+  border-color: var(--cc-yellow-500);
+  box-shadow: 0 0 10px rgba(255, 211, 0, 0.2);
+}
+
+.note-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note-type-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+
+.note-page-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--cc-text-muted);
+}
+
+.note-card-del-btn {
+  background: transparent;
+  border: none;
+  color: var(--cc-text-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 4px;
+}
+
+.note-card-del-btn:hover {
+  color: var(--cc-red-400);
+}
+
+.note-card-quote {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--cc-text-secondary);
+  border-left: 2px solid var(--cc-yellow-500);
+  padding-left: 0.5rem;
+  margin: 0.2rem 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.note-card-text {
+  font-size: 0.8rem;
+  color: var(--cc-text-main);
+  line-height: 1.35;
+}
+
+.note-placeholder {
+  color: var(--cc-text-muted);
+  font-size: 0.75rem;
+}
+
+.note-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: var(--cc-text-muted);
+  margin-top: 0.25rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Save Success Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  padding: 1.5rem;
+}
+
+.modal-card {
+  max-width: 480px;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.modal-header h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--cc-text-main);
+}
+
+.success-icon {
+  color: var(--cc-lime-400);
+}
+
+.modal-desc {
+  font-size: 0.85rem;
+  color: var(--cc-text-secondary);
+  line-height: 1.45;
+}
+
+.modal-path-box {
+  background: rgba(10, 13, 28, 0.8);
+  border: 1px solid var(--cc-border);
+  border-radius: 6px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.path-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--cc-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.path-text {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--cc-yellow-500);
+  word-break: break-all;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+

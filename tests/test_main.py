@@ -1,3 +1,4 @@
+import base64
 import errno
 import os
 import tempfile
@@ -151,6 +152,61 @@ class UnlockTests(unittest.TestCase):
         window.create_file_dialog.side_effect = OSError('dialog failed')
         with self.assertRaisesRegex(RuntimeError, 'dialog'):
             self.api.select_files()
+
+    def test_select_single_pdf(self):
+        window = MagicMock()
+        self.api.set_window(window)
+        window.create_file_dialog.return_value = None
+        self.assertIsNone(self.api.select_single_pdf())
+        window.create_file_dialog.return_value = [str(self.source)]
+        selected = self.api.select_single_pdf()
+        self.assertEqual(selected['path'], str(self.source))
+        self.assertEqual(selected['name'], self.source.name)
+        window.create_file_dialog.side_effect = OSError('dialog error')
+        with self.assertRaisesRegex(RuntimeError, 'dialog'):
+            self.api.select_single_pdf()
+
+    def test_read_pdf_base64(self):
+        result = self.api.read_pdf_base64(str(self.source))
+        self.assertTrue(result['success'])
+        self.assertEqual(result['name'], self.source.name)
+        self.assertEqual(result['size'], len(self.original))
+        decoded = base64.b64decode(result['data'])
+        self.assertEqual(decoded, self.original)
+
+        for invalid in ['', 'relative.pdf', '/null\x00.pdf', 123]:
+            with self.assertRaises(ValueError):
+                self.api.read_pdf_base64(invalid)
+        with self.assertRaises(FileNotFoundError):
+            self.api.read_pdf_base64(str(self.folder / 'missing.pdf'))
+
+    def test_save_pdf_base64_and_permissions(self):
+        sample_bytes = b'%PDF-1.4 edited test bytes'
+        b64 = base64.b64encode(sample_bytes).decode('utf-8')
+        result = self.api.save_pdf_base64(str(self.source), b64)
+        self.assertTrue(result['success'])
+        output = Path(result['outputPath'])
+        self.assertEqual(output.name, 'statement_edited.pdf')
+        self.assertEqual(output.read_bytes(), sample_bytes)
+        if os.name == 'posix':
+            self.assertEqual(output.stat().st_mode & 0o777, 0o600)
+
+        # Subsequent save creates statement_edited_1.pdf
+        second = self.api.save_pdf_base64(str(self.source), b64)
+        self.assertTrue(second['success'])
+        self.assertEqual(Path(second['outputPath']).name, 'statement_edited_1.pdf')
+
+        # Invalid args
+        for invalid_path in ['', 'rel.pdf', None]:
+            with self.assertRaises(ValueError):
+                self.api.save_pdf_base64(invalid_path, b64)
+
+    def test_reveal_in_folder(self):
+        with patch('subprocess.run') as mock_run:
+            self.assertTrue(self.api.reveal_in_folder(str(self.source)))
+            mock_run.assert_called_once()
+        self.assertFalse(self.api.reveal_in_folder(str(self.folder / 'non_existent.pdf')))
+        self.assertFalse(self.api.reveal_in_folder(''))
 
     def test_desktop_starts_with_debug_disabled_and_file_uri(self):
         with patch('main.webview.create_window') as create, patch('main.webview.start') as start:
