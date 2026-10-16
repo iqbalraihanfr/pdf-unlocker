@@ -1,0 +1,31 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Node & Frontend build
+frontend/node_modules/
+frontend/dist/
+frontend/.npm/
+
+# Output and staging
+output/
+.pdf-unlocker-*
+
+# OS & Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Tests and Coverage
+.pytest_cache/
+.coverage
+htmlcov/
