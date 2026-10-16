@@ -1,6 +1,6 @@
-# PDF Unlocker
+# PDF Unlocker & Editor
 
-Aplikasi desktop untuk membuka PDF dengan password yang Anda ketahui dan menyimpan salinan tanpa enkripsi. Pemrosesan dilakukan secara lokal menggunakan **pywebview + pikepdf**, dengan antarmuka **React + Vite**. Aplikasi tidak mengunggah PDF atau password.
+Aplikasi desktop lokal untuk **membuka password PDF**, **menambahkan komentar / sticky notes**, **stabilo (highlight)**, **teks bebas**, dan **coretan/tanda tangan** secara **100% offline**. Pemrosesan dilakukan langsung di komputer pengguna menggunakan **pywebview + pikepdf + pdf-lib**, dengan antarmuka modern **React + Vite** bertema Codecademy Gamut. Tidak ada data atau file yang diunggah ke internet atau server cloud mana pun.
 
 ## Menjalankan aplikasi
 
@@ -28,6 +28,18 @@ Pada Windows, aktifkan environment dengan `venv\Scripts\activate`. pywebview mem
 5. Perbaiki password atau masalah folder, lalu pilih **Coba Lagi / Proses Sisa**. File yang sudah berhasil dilewati. Untuk memproses ulang file berhasil, hapus dari daftar lalu pilih kembali.
 
 Pemilihan dan penghapusan file dikunci selama batch berjalan. Jika koneksi API gagal, file yang belum selesai ditandai gagal agar dapat dicoba lagi. Dialog yang dibatalkan tidak dianggap error.
+
+## Fitur Edit & Anotasi PDF (All-in-One Offline)
+
+Tab **Edit & Catat PDF** memungkinkan pengeditan dokumen langsung tanpa mengunggah ke server cloud (alternatif Adobe Acrobat Web yang 100% lokal & privat):
+- **Buka File**: Pilih PDF lokal mana saja melalui tombol *Pilih PDF untuk Diedit*, atau klik *Edit / Beri Catatan* langsung pada file yang baru saja dibuka passwordnya di antrean unlocker.
+- **Pilih & Seleksi Teks**: Sorot teks untuk memunculkan floating pill mini (*Beri Stabilo* atau *Tambah Catatan*) ala Adobe/Notion.
+- **Stabilo (Highlight)**: Beri stabilo warna pada teks atau area tertentu (pilihan warna Kuning Emas, Hijau Lime, Biru Langit, Pink).
+- **Sticky Note (Catatan)**: Letakkan pin catatan di mana saja pada halaman untuk menulis komentar. Dilengkapi penomoran otomatis dan terhubung ke panel daftar komentar.
+- **Teks Bebas**: Ketik teks tambahan pada halaman PDF dengan pilihan ukuran font (12px, 16px, 20px, 24px) dan warna.
+- **Pena & Tanda Tangan**: Gambar coretan bebas, tanda tangan digital, atau garis penunjuk dengan pilihan ketebalan dan warna.
+- **Panel Komentar & Anotasi**: Sidebar kanan yang dapat disembunyikan untuk melihat seluruh catatan dokumen. Klik pada salah satu catatan untuk langsung menuju ke halaman dan pin terkait (*smooth scroll*).
+- **Simpan PDF Baru**: Menyimpan file hasil modifikasi sebagai `nama_edited.pdf` di folder lokal asal secara aman tanpa menimpa file asli, dengan tombol praktis *Buka di Folder* (Finder / Explorer).
 
 ## Penyimpanan dan privasi
 
